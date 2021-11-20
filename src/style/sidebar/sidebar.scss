@@ -1,9 +1,11 @@
 // 处理 menu 菜单的样式// sidebar
+$sideBarWidth:0;
 #app {
     .main-container {
       min-height: 100%;
       transition: margin-left 0.28s;
       margin-left: $sideBarWidth;
+      margin-left:0px;
       position: relative;
     }
   
@@ -68,7 +70,7 @@
       }
   
       .is-active > .el-submenu__title {
-        color: $subMenuActiveText !important;
+        color: #f4f4f5 !important;
       }
   
       & .nest-menu .el-submenu > .el-submenu__title,

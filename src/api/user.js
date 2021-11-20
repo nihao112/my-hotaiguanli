@@ -4,7 +4,16 @@ export const logins = (data) => {
   // axios请求
   return axios.request({
     url: '/sys/login',
-    method: 'post',
+    method: 'POST',
+    data
+  })
+}
+// 获取用户数据
+export const getUserInfo = (data) => {
+  // axios请求
+  return axios.request({
+    url: '/sys/profile',
+    method: 'GET',
     data
   })
 }

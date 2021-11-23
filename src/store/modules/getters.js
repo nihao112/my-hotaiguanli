@@ -2,10 +2,10 @@
 import variables from '@/style/variables/variables.scss'
 export default {
   token: (state) => state.user.token,
-  userInfo: (state) => state.user.userInfo,
   hasUserInfo: (state) => {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
+  userInfo: (state) => state.user.userInfo,
   cssVar: (state) => variables,
   zheDieTuBiao: (state) => state.app.ShenSuoKuang
 }

@@ -1,6 +1,5 @@
 <script setup>
-import avatar from '@/assets/logo.png'
-import SidebarMenu from './SidebarMenu.vue'
+import SidebarMenu from './components/SidebarMenu/index.vue'
 import { useStore } from 'vuex'
 const store = useStore()
 
@@ -8,10 +7,10 @@ const store = useStore()
 <template>
   <div class="cebianlan ">
     <div class="logos">
-      <el-avatar shape="square"
+      <el-avatar shape="circle"
                  :size="50"
-                 :src="avatar"></el-avatar>
-      <h1 v-if="store.getters.zheDieTuBiao">{{store.getters.userInfo}}</h1>
+                 :src="store.getters.userInfo.avatar"></el-avatar>
+      <h1 v-if="store.getters.zheDieTuBiao">{{store.getters.userInfo.username}}</h1>
     </div>
     <!-- 滚动组件 -->
     <el-scrollbar>
@@ -29,6 +28,7 @@ const store = useStore()
     line-height: 53px;
     font-size: 18px;
     color: white;
+    white-space: nowrap;
   }
   .el-avatar {
     background: none;

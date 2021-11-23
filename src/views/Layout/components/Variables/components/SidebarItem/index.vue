@@ -1,13 +1,13 @@
 <script setup>
-import MenuItem from './MenuItem.vue'
+import MenuItem from '../MenuItem'
 import { defineProps } from 'vue'
-const props = defineProps({
+import SidebarItem from './index'
+defineProps({
   route: {
     type: Object,
     required: true
   }
 })
-console.log(props.route, '!23')
 
 </script>
 <template>

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import layout from '../views/Layout/index.vue'
+import layout from '@/views/Layout/index.vue'
 // 私有路由
 const privateRoutes = [
   {
@@ -99,8 +99,7 @@ const privateRoutes = [
 const publicRoutes = [
   {
     path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login/index.vue')
+    component: () => import('@/views/Login/index.vue')
   },
   {
     path: '/',

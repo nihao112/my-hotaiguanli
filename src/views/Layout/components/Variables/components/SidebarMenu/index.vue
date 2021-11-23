@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
 import { computed } from 'vue'
-import SidebarItem from './SidebarItem.vue'
+import SidebarItem from '../SidebarItem'
 import { useStore } from 'vuex'
 // import avatar from '@/assets/logo.png'
 import { filterRouter, generateMenus } from '@/utils/router.js'
@@ -9,18 +9,17 @@ const router = useRouter()
 const store = useStore()
 
 // 获取路由
-console.log(router.getRoutes())
+// console.log(router.getRoutes())
 // 去除重复路由
-console.log(filterRouter(router.getRoutes()))
+// console.log(filterRouter(router.getRoutes()))
 // 格式化
-console.log(generateMenus(filterRouter(router.getRoutes())))
+// console.log(generateMenus(filterRouter(router.getRoutes())))
 // 因为以后路由要变化所以要用计算属性
 const routes = computed(() => {
   const filterRoutes = filterRouter(router.getRoutes())
   return generateMenus(filterRoutes)
 })
 const route = useRoute()
-console.log(route)
 const activePath = computed(() => {
   const { path } = route
   return path

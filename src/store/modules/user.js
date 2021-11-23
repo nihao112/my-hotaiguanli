@@ -16,7 +16,7 @@ const mutations = {
   },
   getUserInfo(state, value) {
     // 保存vuex
-    state.value = value
+    state.userInfo = value
     // 保存到本地存储上
     utils.setItem(USER_INFO, value)
   }
@@ -49,7 +49,7 @@ const actions = {
   hasUserInfo({ commit }) {
     // 发送ajax
     getUserInfo().then((res) => {
-      commit('getUserInfo', res.username)
+      commit('getUserInfo', res)
     }).catch((err) => {
       console.log(err)
     })

@@ -19,7 +19,7 @@
 }
 
 #app .sidebar-container .horizontal-collapse-transition {
-  transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  transition: 0.2s width ease-in-out, 70s padding-left ease-in-out, 0s padding-right ease-in-out;
 }
 
 #app .sidebar-container .scrollbar-wrapper {
@@ -76,10 +76,6 @@
   width: 54px !important;
 }
 
-#app .hideSidebar .main-container {
-  margin-left: 54px;
-}
-
 #app .hideSidebar .submenu-title-noDropdown {
   padding: 0 !important;
   position: relative;
@@ -99,10 +95,6 @@
 
 #app .hideSidebar .el-submenu {
   overflow: hidden;
-}
-
-#app .hideSidebar .el-submenu > .el-submenu__title {
-  padding: 0 !important;
 }
 
 #app .hideSidebar .el-submenu > .el-submenu__title .svg-icon {
@@ -159,4 +151,5 @@
 .el-menu--vertical > .el-menu--popup::-webkit-scrollbar-thumb {
   background: #99a9bf;
   border-radius: 20px;
+  border: 1px solid red;
 }

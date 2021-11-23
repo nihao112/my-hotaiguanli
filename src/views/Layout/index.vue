@@ -1,0 +1,58 @@
+<template>
+  <div>
+    <div class="app-wrapper"
+         :class="store.getters.zheDieTuBiao?'':'hideSidebar'">
+      <Variables id="guide-sidebar"
+                 class="siderbar-container" />
+      <div class="main-container">
+        <div class="fixed-header">
+          <Sidebar />
+        </div>
+        <Common />
+      </div>
+    </div>
+  </div>
+
+</template>
+<script setup>
+import { useStore } from 'vuex'
+import Common from './components/Common/index.vue'
+import Sidebar from './components/Sidebar/index.vue'
+import Variables from './components/Variables/index.vue'
+var store = useStore()
+</script>
+<style lang="scss" scoped>
+@import '~@/style/common/common.scss';
+@import '~@/style/variables/variables.scss';
+
+.app-wrapper {
+  @include clearfix;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  .siderbar-container {
+    width: $sideBarWidth;
+    height: 100vh;
+    float: left;
+    background: $subMenuBg;
+    overflow: hidden; // 侧边栏超出出现了滚动条
+    transition: width 0.28s;
+  }
+  .main-container {
+    flex: 1;
+    .fixed-header {
+      width: calc(100% - #{$sideBarWidth}+3); // 用来动态计算宽度的
+    }
+  }
+}
+.hideSidebar {
+  .siderbar-container {
+    transition: width 0.28s;
+    width: #{$sideBarhideWidth};
+  }
+  .fixed-header {
+    width: calc(100% - #{$sideBarhideWidth}+3); // 用来动态计算宽度的
+  }
+}
+</style>

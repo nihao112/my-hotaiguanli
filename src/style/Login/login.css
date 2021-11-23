@@ -3,12 +3,13 @@
   height: 100%;
   position: absolute;
   overflow: hidden;
-  background: url('../../assets/beijing.jpg') no-repeat;
-background-size: 100% 100%;
+  background: url("../../assets/beijing.jpg") no-repeat;
+  background-size: 100% 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .login {
   width: 450px;
   height: 470px;
@@ -18,35 +19,38 @@ background-size: 100% 100%;
   justify-content: center;
   align-items: center;
 }
+
 .Neilogin {
   width: 70%;
 }
-.titles{
+
+.titles {
   font-size: 30px;
   color: white;
   text-align: center;
   margin: 0px 0px 30px 0px;
 }
- :deep(.el-form){
-  .el-input__inner{
-     border: none;
-     background-color:rgba(0, 0, 0, 0.6);
-  }
-  .classIcon{
-     width: 1.5em;
-     height: 1.5em;
-     color: white;
-     margin: 0px 10px;
-  }
-  .el-form-item__content .inputs:focus-within {
-     border: 1px solid rgb(64, 158, 255);
-  }
-} 
+
+:deep(.el-form) .el-input__inner {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+:deep(.el-form) .classIcon {
+  width: 1.5em;
+  height: 1.5em;
+  color: white;
+  margin: 0px 10px;
+}
+
+:deep(.el-form) .el-form-item__content .inputs:focus-within {
+  border: 1px solid #409eff;
+}
 
 .inputs {
   display: flex;
   align-items: center;
   border-radius: 5px;
-  background-color:rgba(0, 0, 0, 0.9);
-   border: 1px solid rgba(253, 253, 253, 0.6);
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(253, 253, 253, 0.6);
 }

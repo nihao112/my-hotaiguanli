@@ -19,10 +19,9 @@ $sideBarWidth:0;
       left: 0;
       z-index: 1001;
       overflow: hidden;
-  
       // 重置 element-plus 的css
       .horizontal-collapse-transition {
-        transition: 0s width ease-in-out, 0s padding-left ease-in-out,
+        transition: 0.2s width ease-in-out, 70s padding-left ease-in-out,
           0s padding-right ease-in-out;
       }
   
@@ -67,6 +66,7 @@ $sideBarWidth:0;
         border: none;
         height: 100%;
         width: 100% !important;
+
       }
   
       .is-active > .el-submenu__title {
@@ -83,15 +83,12 @@ $sideBarWidth:0;
       .sidebar-container {
         width: 54px !important;
       }
-  
-      .main-container {
-        margin-left: 54px;
-      }
-  
+      // .main-container{
+
+      // }
       .submenu-title-noDropdown {
         padding: 0 !important;
         position: relative;
-  
         .el-tooltip {
           padding: 0 !important;
   
@@ -109,8 +106,8 @@ $sideBarWidth:0;
         overflow: hidden;
   
         & > .el-submenu__title {
-          padding: 0 !important;
-  
+          // padding: 0 !important;
+
           .svg-icon {
             margin-left: 20px;
           }
@@ -179,6 +176,7 @@ $sideBarWidth:0;
       &::-webkit-scrollbar-thumb {
         background: #99a9bf;
         border-radius: 20px;
+        border: 1px solid red;
       }
     }
   }

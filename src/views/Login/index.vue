@@ -1,13 +1,19 @@
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, getCurrentInstance, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { valiPassword } from './rule'
-
+import { valiPassword, valiusername } from './rule'
+import { ElMessage } from 'element-plus'
+import SelectLang from '@/components/SelectLang'
+import Jiazai from '@/components/Jiazai'
+import { useI18n } from 'vue-i18n'
+const i18n = useI18n()
 const loginForm = ref(null)
 var time = ref(null)
 const passwd = ref(true)
+const boxshow = ref(false)
+const jiazai = ref(false)
 var router = useRouter()
 var store = useStore()
 const state = reactive({
@@ -15,10 +21,10 @@ const state = reactive({
     username: 'super-admin',
     password: '123456'
   },
-  checked: true,
+  checked: false,
   rules: {
     username: [
-      { required: 'true', message: '账户不能为空', trigger: 'change' }
+      { required: 'true', validator: valiusername, trigger: 'change' }
     ],
     password: [
       {
@@ -35,7 +41,12 @@ const submitForm = async () => {
     if (valid) {
       // 由于是局内导出所有在后面要加上("模块名us/方法名login")
       store.dispatch('user/login', state.ruleForm).then((res) => {
-        router.push('/')
+        jiazai.value = true
+        setTimeout(() => {
+          ElMessage.success(i18n.t('toast.successfully'))
+          router.push('/')
+          jiazai.value = false
+        }, 2000)
       })
     } else {
       return false
@@ -47,14 +58,28 @@ const passwores = () => {
   passwd.value = !passwd.value
   time = setInterval(() => {
     passwd.value = true
-  }, 1000)
+  }, 500)
 }
+// 中英切换
+const { proxy } = getCurrentInstance()
+console.log(proxy)
+// 监听getters.language的变化
+watch(() => store.getters.language, (newValu, oldValue) => {
+  // 中英文切换，验证重新执行
+  loginForm.value.validateField('username')
+  loginForm.value.validateField('password')
+})
 </script>
+
 <template>
   <div class="home">
     <div class="login">
+      <div class="zhongying">
+        <!-- 国际化 -->
+        <select-lang />
+      </div>
       <div class="Neilogin">
-        <h1 class="titles">后台管理</h1>
+        <h1 class="titles">{{$t("login.title")}}</h1>
         <el-form label-position="top"
                  :rules="state.rules"
                  :model="state.ruleForm"
@@ -78,22 +103,39 @@ const passwores = () => {
                         v-model.trim="state.ruleForm.password"
                         autocomplete="off"></el-input>
               <svg-icon @click="passwores"
-                        className="classIcon"
+                        className="classIcon xiaoyan"
                         :icon="passwd?'biyanjing-xianxing3-0':'yanjing'" />
             </div>
           </el-form-item>
           <el-form-item>
-            <div style="color: aliceblue">登录表示您已同意<a>《服务条款》</a></div>
+            <div style="color: aliceblue">{{$t("login.logindenglu")}}&nbsp;<a href="https://work.weixin.qq.com/nl/privacy">{{$t("login.loginfuwu")}}</a></div>
             <el-button style="width: 100%"
                        type="primary"
-                       @click="submitForm">立即登录</el-button>
+                       @click="submitForm">
+              <Jiazai v-if="jiazai" /> {{$t("login.loginBtn")}}
+            </el-button>
             <el-checkbox v-model="state.checked"
-                         @change="!checked">下次自动登录</el-checkbox>
+                         @change="!checked">{{$t("login.loginjizhu")}}</el-checkbox>
           </el-form-item>
+
         </el-form>
       </div>
     </div>
+    <div class="biaoji">
+      <div @mouseover="boxshow=true"
+           @mouseout="boxshow=false"
+           class="biaoji_1">{{$t("login.permission")}}<svg-icon className="jianto"
+                  icon="jianto"></svg-icon>
+      </div>
+      <transition name="fade">
+        <p v-show="boxshow"
+           class="biaoji_2"
+           v-html="$t('login.desc')">
+        </p>
+      </transition>
+    </div>
   </div>
+
 </template>
 <style lang="scss" scoped>
 @import '../../style/Login/login.scss';

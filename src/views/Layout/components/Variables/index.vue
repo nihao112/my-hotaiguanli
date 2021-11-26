@@ -2,7 +2,6 @@
 import SidebarMenu from './components/SidebarMenu/index.vue'
 import { useStore } from 'vuex'
 const store = useStore()
-
 </script>
 <template>
   <div class="cebianlan ">
@@ -21,6 +20,7 @@ const store = useStore()
 <style lang="scss" scoped>
 .logos {
   display: flex;
+  height: 50px;
   justify-content: space-around;
   h1 {
     height: 53px;

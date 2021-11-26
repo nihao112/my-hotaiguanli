@@ -7,6 +7,10 @@
     </div>
     <!-- 右侧 -->
     <div class="right-menu">
+      <!-- 主题切换 -->
+      <theme />
+      <!-- 国际化按钮 -->
+      <select-lang />
       <el-dropdown class="avatar-containe">
         <!-- 头像 -->
         <div class="avatar-wrapper">
@@ -16,10 +20,10 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-drop-down">
-            <el-dropdown-item>首页</el-dropdown-item>
-            <el-dropdown-item disabled>课程主页</el-dropdown-item>
+            <el-dropdown-item>{{$t("navBar.home")}}</el-dropdown-item>
+            <el-dropdown-item>{{$t("navBar.course")}}</el-dropdown-item>
             <el-dropdown-item divided
-                              @click="logout">退出登录</el-dropdown-item>
+                              @click="logout">{{$t("navBar.logout")}}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -32,10 +36,36 @@ import avatar from '@/assets/OIP-C.jpg'
 import { useStore } from 'vuex'
 import Cuttle from '@/components/Cuttle/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import SelectLang from '@/components/SelectLang/index.vue'
+import theme from '@/components/theme/index.vue'
+import { ElMessageBox, ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 const store = useStore()
 // 主动退出
+const i18n = useI18n()
 const logout = () => {
-  store.dispatch('user/logout')
+  ElMessageBox.confirm(
+    i18n.t('toast.confirmzhiyi'),
+    i18n.t('toast.tishi'),
+    {
+      confirmButtonText: i18n.t('universal.confirm'),
+      cancelButtonText: i18n.t('universal.cancel'),
+      type: 'warning'
+    }
+  )
+    .then(() => {
+      ElMessage({
+        type: 'success',
+        message: i18n.t('toast.success')
+      })
+      store.dispatch('user/logout')
+    })
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: i18n.t('toast.successquxiao')
+      })
+    })
 }
 </script>
 
@@ -48,8 +78,13 @@ const logout = () => {
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   display: flex;
   justify-content: space-between;
-  .right-menu {
-    padding-right: 16px;
+  :deep(.right-menu) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .el-dropdown {
+      margin: 0px 10px !important;
+    }
     .avatar-containe {
       cursor: pointer;
       .avatar-wrapper {
@@ -71,7 +106,6 @@ const logout = () => {
       line-height: 65px;
       cursor: pointer;
       transition: background 0.9s;
-
       &:hover {
         background: rgba(0, 0, 0, 0.1);
       }

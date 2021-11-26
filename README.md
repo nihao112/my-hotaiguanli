@@ -37,7 +37,7 @@ css 文件，字体 svg-->loader-->对应的 js 模块--webpack
 不需要配置，直接使用，因为项目环境已经直接配置了常见的 loader
 svg 导入后： 1.是由 file-loader 变成一个/img/user.沙汪值.svg.js 模块, 2.可以按照 img 方式加载
 缺点：file-loader 转化的 js 模块不能动态修改一个图片的颜色
-不利于封装一个全局组件
+不利于封装一个全局组件  
 查看 webpack 的默认配置指令
 vue inspect 查看默认的 webpack 配置
 vue inspect --rules 查看所有的 loader
@@ -116,3 +116,14 @@ router.getRoutes()
 <2.不过不满足 meta&&meta.icon&&meta.title 不应该出现
 
 3.根据获取的路由对象,遍历输出对应的菜单
+
+### 中英切换（国际化）
+
+1.需要一个变量 locole 控制语言环境 2.所有的语言中的数据源要事先准备好 3.定义一个方法获取对应语言中的数据
+借助 i18n 插件完成国际化
+npm install vue-i18n@next
+因为项目是 vue3.3 要注意下载版本要 9 以上的 9 一下的不兼容
+import i18n from "@/i18n/index.js"
+在 vue 模板中使用$t("模板名字")
+在 vue 组件中是 i18n.t("模板名字)
+在 js 中使用 i18n.global.t("模板名字)

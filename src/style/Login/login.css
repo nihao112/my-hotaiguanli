@@ -3,21 +3,108 @@
   height: 100%;
   position: absolute;
   overflow: hidden;
-  background: url("../../assets/beijing.jpg") no-repeat;
-  background-size: 100% 100%;
+  background: url("../../assets//beijing.jpg") no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.home .biaoji {
+  width: 380px;
+  position: absolute;
+  top: 170px;
+  left: 100px;
+  color: white;
+}
+
+.home .biaoji .biaoji_1 {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.home .biaoji .biaoji_1 .jianto {
+  position: absolute;
+  bottom: -20px;
+  left: 176px;
+  font-size: 26px;
+}
+
+.home .biaoji .fade-enter-active {
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.home .biaoji .fade-leave-active {
+  animation-name: fadeOutDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.home .biaoji .biaoji_2 {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid #c2c2c2;
+}
+
+.el-button {
+  position: relative;
+}
+
+.el-button .jiazai {
+  position: absolute;
+  top: 6px;
+  left: 107px;
+}
+
 .login {
-  width: 450px;
-  height: 470px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 30px;
+  width: 435px;
+  height: 510px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 13px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.zhongying {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+}
+
+.zhongying :deep(.selectI18n) {
+  color: white;
 }
 
 .Neilogin {
@@ -33,14 +120,22 @@
 
 :deep(.el-form) .el-input__inner {
   border: none;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: white;
 }
 
 :deep(.el-form) .classIcon {
   width: 1.5em;
   height: 1.5em;
-  color: white;
+  color: #8b8787;
   margin: 0px 10px;
+}
+
+:deep(.el-form) .xiaoyan {
+  cursor: pointer;
+}
+
+:deep(.el-form) .el-form-item .el-form-item__content div:nth-child(1) {
+  white-space: nowrap;
 }
 
 :deep(.el-form) .el-form-item__content .inputs:focus-within {
@@ -51,6 +146,6 @@
   display: flex;
   align-items: center;
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: white;
   border: 1px solid rgba(253, 253, 253, 0.6);
 }

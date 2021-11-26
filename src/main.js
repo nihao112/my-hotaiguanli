@@ -1,6 +1,9 @@
 import {
   createApp
 } from 'vue'
+// 引入element-plus
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import App from './App.vue'
 // 引入router路由
 import router from './router'
@@ -8,12 +11,13 @@ import router from './router'
 import store from './store'
 // 引入样式的主入口文件
 import './style/index/index.scss'
-import installElementPlus from './plugins/element'
 // 引入icon图标
 import svgIconInit from './icons/index.js'
 // 用户鉴权
 import './permisson.js'
+// 中英切换
+import i18n from '@/i18n/index'
+
 const app = createApp(App)
-installElementPlus(app)
 svgIconInit(app)
-app.use(store).use(router).mount('#app')
+app.use(store).use(router).use(ElementPlus).use(i18n).mount('#app')

@@ -7,7 +7,7 @@ import store from '@/store/index'
 // 导入token封装过期时间
 import { isCheckTimeOut } from './auth'
 const server = axios.create({
-  timeout: 5000,
+  timeout: 10000,
   baseURL: '/api'
 })
 // 错误处理 服务器返回错误提示

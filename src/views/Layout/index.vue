@@ -2,7 +2,8 @@
   <div>
     <div class="app-wrapper"
          :class="store.getters.zheDieTuBiao?'':'hideSidebar'">
-      <Variables id="guide-sidebar"
+      <Variables :style="{backgroundColor:store.getters.cssVar.menuBg}"
+                 id="guide-sidebar"
                  class="siderbar-container" />
       <div class="main-container">
         <div class="fixed-header">
@@ -19,7 +20,7 @@ import { useStore } from 'vuex'
 import Common from './components/Common/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import Variables from './components/Variables/index.vue'
-var store = useStore()
+const store = useStore()
 </script>
 <style lang="scss" scoped>
 @import '~@/style/common/common.scss';
@@ -35,9 +36,9 @@ var store = useStore()
     width: $sideBarWidth;
     height: 100vh;
     float: left;
-    background: $subMenuBg;
+    // background-color: v-bind(cssStyle);
     overflow: hidden; // 侧边栏超出出现了滚动条
-    transition: width 0.28s;
+    transition: width 0.29s;
   }
   .main-container {
     flex: 1;
@@ -48,7 +49,7 @@ var store = useStore()
 }
 .hideSidebar {
   .siderbar-container {
-    transition: width 0.28s;
+    transition: width 0.29s;
     width: #{$sideBarhideWidth};
   }
   .fixed-header {

@@ -11,14 +11,14 @@ const closeDialog = () => {
 </script>
 
 <template>
-  <div>
+  <div class="right-menu_1">
     <!--解决组件引入根组件问题 绑定根组件-->
     <el-dropdown v-bind="$attrs"
                  trigger="click"
                  @command="showSelectColor">
       <!-- 图标 -->
       <div>
-        <el-tooltip class="item"
+        <el-tooltip class="tooltip"
                     effect="dark"
                     :content="$t('theme.themeChange')"
                     placement="bottom">
@@ -42,7 +42,7 @@ const closeDialog = () => {
 <style lang='scss' scoped>
 .themes {
   color: white;
-  font-size: 34px;
+  font-size: 32px;
   cursor: pointer;
 }
 </style>

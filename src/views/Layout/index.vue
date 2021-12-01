@@ -42,6 +42,7 @@ const store = useStore()
   }
   .main-container {
     flex: 1;
+    overflow: hidden;
     .fixed-header {
       width: calc(100% - #{$sideBarWidth}+3); // 用来动态计算宽度的
     }

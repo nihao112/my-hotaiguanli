@@ -2,6 +2,7 @@
 // 1.去除重复的二级路由，保持一二级路由的层级关系
 // 依赖包path再js中可以直接引入再vue中不行
 import path from 'path'
+import i18n from '@/i18n/index.js'
 // 获取所有的二级路由
 const getChildrenRouters = (routes) => {
   const result = []
@@ -70,4 +71,32 @@ export function generateMenus(routes, basePath = '') {
     }
   })
   return result
+}
+
+// 配合fuse.js 处理路由数据源 满足fuse.js的搜索方式
+// @ param routers是filter过滤去重后的路由
+export const generateFuse = (routes, titles = []) => {
+  let res = []
+  // 1.要遍历routes
+  for (const route of routes) {
+    const data = {
+      path: route.path,
+      title: [...titles] // 不迭代的话这里是个空title如果多迭代这里以后会放一级标题的title
+    }
+    // 条件一 1.要具备meta&& meta.title 2.过滤掉动态路由/:id
+    const reg = /.*\/:.*/
+    if (route.meta && route.meta.title && !reg.exec(route.path)) {
+      // 变成国际化
+      const title = i18n.global.t(`route.${route.meta.title}`)
+      data.title = [...data.title, title]
+      res.push(data)
+    }
+    if (route.children && route.children.length > 0) {
+      const subRes = generateFuse(route.children, data.title)
+      if (subRes.length > 0) {
+        res = [...res, ...subRes]
+      }
+    }
+  }
+  return res
 }

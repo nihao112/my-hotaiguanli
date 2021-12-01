@@ -67,7 +67,8 @@ export default {
     guide: '功能引导',
     home: '首页',
     course: '课程主页',
-    logout: '退出登录'
+    logout: '退出登录',
+    ScreenFull: '全屏'
   },
   guide: {
     close: '关闭',

@@ -1,7 +1,7 @@
 
 <script setup>
 import { defineProps } from 'vue'
-import { grTitle } from '@/utils/i18n.js'
+import { getTitle } from '@/utils/i18n.js'
 defineProps({
   title: {
     type: String,
@@ -19,13 +19,14 @@ defineProps({
 </script>
 <template>
   <!-- el-icon -->
+
   <i class="el-icon-user"
      v-if="icon.includes('el-icon')"></i>
   <!-- svg组件 -->
   <svg-icon :icon="icon"
             className="iconst"
             v-else />
-  <span v-if="children">{{grTitle(title)}}</span>
+  <span v-if="children">{{getTitle(title)}}</span>
 </template>
 <style lang="scss" scoped>
 .iconst {

@@ -15,26 +15,29 @@ const changeLanguage = (lang) => {
 </script>
 
 <template>
-  <el-dropdown trigger="click"
-               @command="changeLanguage">
-    <div>
-      <el-tooltip class="item"
-                  effect="dark"
-                  :content="$t('navBar.lang')"
-                  placement="bottom">
-        <svg-icon icon="language"
-                  className="selectI18n" />
-      </el-tooltip>
-    </div>
-    <template #dropdown>
-      <el-dropdown-menu>
-        <el-dropdown-item command="zh"
-                          :disabled="store.getters.language==='zh'?true:false">中文</el-dropdown-item>
-        <el-dropdown-item command="en"
-                          :disabled="store.getters.language==='en'?true:false">English</el-dropdown-item>
-      </el-dropdown-menu>
-    </template>
-  </el-dropdown>
+  <div class="right-menu_1">
+    <el-dropdown trigger="click"
+                 @command="changeLanguage">
+      <div>
+        <el-tooltip class="tooltip"
+                    effect="dark"
+                    :content="$t('navBar.lang')"
+                    placement="bottom">
+          <svg-icon icon="language"
+                    className="selectI18n" />
+        </el-tooltip>
+      </div>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item command="zh"
+                            :disabled="store.getters.language==='zh'?true:false">中文</el-dropdown-item>
+          <el-dropdown-item command="en"
+                            :disabled="store.getters.language==='en'?true:false">English</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
+
 </template>
 
 <style lang='scss' scoped>
@@ -42,9 +45,9 @@ const changeLanguage = (lang) => {
   cursor: pointer;
   font-size: 35px;
   border-radius: 6px;
-  transition: all 1.8s;
-  &:hover {
-    background-color: black;
-  }
+  // transition: all 1.8s;
+  // &:hover {
+  //   background-color: black;
+  // }
 }
 </style>

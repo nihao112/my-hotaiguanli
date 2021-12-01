@@ -29,8 +29,6 @@ const borderstyle = computed(() => {
 const colorstyle = computed(() => {
   return store.getters.cssVar.menuActiveText
 })
-console.log(store.getters.cssVar.menuText, '23')
-
 </script>
 <template>
   <div>

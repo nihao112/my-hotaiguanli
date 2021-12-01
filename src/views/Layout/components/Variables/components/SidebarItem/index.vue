@@ -2,7 +2,7 @@
 import MenuItem from '../MenuItem'
 import { defineProps } from 'vue'
 import SidebarItem from './index'
-import { grTitle } from '@/utils/i18n.js'
+import { getTitle } from '@/utils/i18n.js'
 
 defineProps({
   route: {
@@ -33,7 +33,7 @@ defineProps({
     <menu-item :title="route.meta.title"
                :icon="route.meta.icon"
                :children="false" />
-    <template #title>{{grTitle(route.meta.title)}}</template>
+    <template #title>{{getTitle(route.meta.title)}}</template>
   </el-menu-item>
 </template>
 <style lang="scss" scope>

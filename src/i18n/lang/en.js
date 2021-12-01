@@ -67,7 +67,8 @@ export default {
     guide: 'Function Guide',
     home: 'Home',
     course: 'Course homepage',
-    logout: 'Log out'
+    logout: 'Log out',
+    ScreenFull: 'full screen'
   },
   guide: {
     close: 'close',

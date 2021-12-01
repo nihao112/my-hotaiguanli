@@ -69,6 +69,7 @@ watch(() => store.getters.language, (newValu, oldValue) => {
   loginForm.value.validateField('username')
   loginForm.value.validateField('password')
 })
+
 </script>
 
 <template>
@@ -89,7 +90,8 @@ watch(() => store.getters.language, (newValu, oldValue) => {
             <div class="inputs">
               <svg-icon icon="yonghu"
                         className="classIcon" />
-              <el-input type="text"
+              <el-input placeholder="请输入用户名"
+                        type="text"
                         v-model.trim="state.ruleForm.username"
                         autocomplete="off">
               </el-input>
@@ -101,6 +103,7 @@ watch(() => store.getters.language, (newValu, oldValue) => {
                         icon="mima" />
               <el-input :type="passwd?'password':'text'"
                         v-model.trim="state.ruleForm.password"
+                        placeholder="请输入密码"
                         autocomplete="off"></el-input>
               <svg-icon @click="passwores"
                         className="classIcon xiaoyan"

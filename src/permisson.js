@@ -35,7 +35,7 @@ router.beforeEach(async (to, from, next) => {
   // 设置进度条百分比
   NProgress.set(0.4)
   // 设置进度条
-  NProgress.configure({ ease: 'ease', speed: 1800 })
+  NProgress.configure({ ease: 'ease', speed: 1100 })
   // 进度条结束
   NProgress.done()
 })

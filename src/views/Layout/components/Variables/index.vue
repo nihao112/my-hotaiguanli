@@ -4,7 +4,7 @@ import { useStore } from 'vuex'
 const store = useStore()
 </script>
 <template>
-  <div class="cebianlan ">
+  <div class="cebianlan">
     <div class="logos">
       <el-avatar shape="circle"
                  :size="50"

@@ -1,7 +1,7 @@
 <script setup>
 import { watch, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { grTitle } from '@/utils/i18n.js'
+import { getTitle } from '@/utils/i18n.js'
 // 获取当前路由
 const route = useRoute()
 const router = useRouter()
@@ -29,11 +29,11 @@ const onLineclick = (item) => {
         <el-breadcrumb-item v-for="(item,index) in breadcru"
                             :key="item.path">
           <!-- 如果是最后一项不可以点击 -->
-          <span v-if="index===breadcru.length-1">{{grTitle(item.meta.title)}}</span>
+          <span v-if="index===breadcru.length-1">{{getTitle(item.meta.title)}}</span>
           <!-- 不是最后一项可以点击 -->
           <a class="request"
              @click.prevent="onLineclick(item)"
-             v-else>{{grTitle(item.meta.title)}}</a>
+             v-else>{{getTitle(item.meta.title)}}</a>
         </el-breadcrumb-item>
       </transition-group>
     </el-breadcrumb>
@@ -53,9 +53,12 @@ const onLineclick = (item) => {
 
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.5s linear;
+  transition: all 0.5s ease-out;
 }
-.list-enter-from,
+.list-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
 .list-leave-to {
   opacity: 0;
   transform: translateX(30px);

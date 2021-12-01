@@ -43,7 +43,7 @@ vue inspect 查看默认的 webpack 配置
 vue inspect --rules 查看所有的 loader
 vue inspect --rule svg 查看配置 svg 的 loader
 配置 webpack 1.在项目根目录创建 vue.config.js 2.这个文件是 node 加载的 commonjs
-导出一个配置配置对象, 作为 webpack 的配置
+导出一个配置对象, 作为 webpack 的配置
 module.exports={} 3.修改 webpack 的配置 1.禁用 file-loader 对某个目录下 svg 的解析 4 2.下载 loader
 npm i -D svg-sprite-loader //-D 保存在 devlopment 依赖中
 

@@ -125,7 +125,13 @@ export default {
   },
   uploadExcel: {
     upload: 'Click upload',
-    drop: 'Drag files here'
+    drop: 'Drag files here',
+    upSheDing: 'The corresponding file must be set',
+    upQuXiao: 'Cancel the file read operation',
+    upYouXiao: 'You must drag and drop a valid file',
+    upONWxcel: 'The file is not a wxcel!',
+    upOnJs: 'This file is not a JS type!',
+    upShuJu: 'Description Data is successfully inserted'
   },
   excel: {
     importExcel: 'excel import',
@@ -142,6 +148,7 @@ export default {
     defaultRole: 'Staff',
     remove: 'delete',
     removeSuccess: 'Deleted successfully',
+    closeremove: 'undelete',
     title: 'Export to excel',
     placeholder: 'excel file name',
     defaultName: 'Staff Management Form',
@@ -150,7 +157,10 @@ export default {
     importSuccess: ' Employee data imported successfully',
     dialogTitle1: 'Are you sure you want to delete the user ',
     dialogTitle2: ' Is it?',
-    roleDialogTitle: 'Configure roles'
+    roleDialogTitle: 'Configure roles',
+    nodateFormate: 'no date formate',
+    message: 'download successfully',
+    errs: 'download failed'
   },
   role: {
     buttonTxt: 'New Role',
@@ -168,7 +178,9 @@ export default {
   permission: {
     name: 'Authority name',
     mark: 'Authority ID',
-    desc: 'Permission description'
+    desc: 'Permission description',
+    unfold: 'Expand All',
+    folding: 'All folding'
   },
   article: {
     ranking: 'Ranking',

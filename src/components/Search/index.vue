@@ -115,7 +115,7 @@ watch(isShow, (value) => {
 <style lang='scss' scoped>
 .header-search {
   .search-icon {
-    font-size: 27px;
+    font-size: 23px;
     color: rgb(59, 60, 61);
     cursor: pointer;
     vertical-align: middle;

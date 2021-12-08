@@ -43,7 +43,7 @@ const changeLanguage = (lang) => {
 <style lang='scss' scoped>
 :deep(.selectI18n) {
   cursor: pointer;
-  font-size: 35px;
+  font-size: 28px;
   border-radius: 6px;
   // transition: all 1.8s;
   // &:hover {

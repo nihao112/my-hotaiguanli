@@ -102,7 +102,7 @@ const logout = () => {
     justify-content: space-between;
     margin-right: 10px;
     .right-menu_1 {
-      padding: 15px;
+      padding: 10px;
       .tooltip {
         border: none;
         outline: none;
@@ -141,5 +141,7 @@ const logout = () => {
 .dibu {
   padding: 4px;
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.09);
+  position: relative;
+  z-index: 3;
 }
 </style>

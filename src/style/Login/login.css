@@ -82,13 +82,13 @@
 
 .el-button .jiazai {
   position: absolute;
-  top: 6px;
-  left: 107px;
+  top: 7px;
+  left: 86px;
 }
 
 .login {
-  width: 435px;
-  height: 510px;
+  width: 380px;
+  height: 441px;
   background-color: rgba(255, 255, 255, 0.12);
   border-radius: 13px;
   display: flex;

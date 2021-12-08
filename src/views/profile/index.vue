@@ -14,9 +14,7 @@
     <el-button type="warning">Warning</el-button>
     <el-button type="danger">Danger</el-button>
     <el-button>中文</el-button>
-
   </div>
-
 </template>
 
 <script setup>
@@ -24,4 +22,5 @@
 const currentPage1 = 1
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

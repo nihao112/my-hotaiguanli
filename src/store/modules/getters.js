@@ -16,5 +16,6 @@ export default {
   zheDieTuBiao: (state) => state.app.ShenSuoKuang,
   language: (state) => state.app.language,
   Theme_color: (state) => state.theme.myColor,
-  daohang: (state) => state.app.fullpast
+  daohang: (state) => state.app.fullpast,
+  currentSizes: (state) => state.app.size
 }

@@ -4,36 +4,41 @@
   position: absolute;
   overflow: hidden;
   background: url('../../assets//beijing.jpg') no-repeat center center fixed;
-   background-size:cover;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
-  .biaoji{
+
+  .biaoji {
     width: 380px;
     position: absolute;
     top: 170px;
     left: 100px;
     color: white;
+
     // border: 1px solid red;
-    .biaoji_1{
-    text-align: center;
-    height: 40px;
-    line-height: 40px;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.4);
-    position: relative;
-    .jianto{
-      position: absolute;
-      bottom: -20px;
-      left: 176px;
-      font-size: 26px;
+    .biaoji_1 {
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.4);
+      position: relative;
+
+      .jianto {
+        position: absolute;
+        bottom: -20px;
+        left: 176px;
+        font-size: 26px;
+      }
     }
-    }
+
     .fade-enter-active {
       animation-name: fadeInUp;
       animation-duration: 1s;
       animation-fill-mode: both;
     }
+
     .fade-leave-active {
       animation-name: fadeOutDown;
       animation-duration: 1s;
@@ -44,43 +49,50 @@
       0% {
         opacity: 0;
         -webkit-transform: translate3d(0, 100%, 0);
-         transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
       }
+
       100% {
-          opacity: 1;
-          -webkit-transform: none;
-          transform: none;
-        }
-      } 
-      @keyframes fadeOutDown {
-    0% {
         opacity: 1;
-       }
-  100% {
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    @keyframes fadeOutDown {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
         opacity: 0;
         -webkit-transform: translate3d(0, 100%, 0);
         transform: translate3d(0, 100%, 0);
       }
-     }
-    .biaoji_2{
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-top: 1px solid rgb(194, 194, 194);
+    }
+
+    .biaoji_2 {
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgb(194, 194, 194);
     }
   }
 }
- .el-button{
-   position: relative;
-   .jiazai{
+
+.el-button {
+  position: relative;
+
+  .jiazai {
     position: absolute;
-    top: 6px;
-    left: 107px;
-   }
- }
+    top: 7px;
+    left: 86px;
+  }
+}
+
 .login {
-  width: 435px;
-  height: 510px;
-  background-color:hsla(0,0%,100%,.12);
+  width: 380px;
+  height: 441px;
+  background-color: hsla(0, 0%, 100%, .12);
   border-radius: 13px;
   display: flex;
   justify-content: center;
@@ -88,58 +100,66 @@
   position: relative;
 
 }
-.zhongying{
+
+.zhongying {
   position: absolute;
   top: 13px;
   right: 16px;
 
-  :deep(.selectI18n){
- color: white;
+  :deep(.selectI18n) {
+    color: white;
   }
 }
+
 .Neilogin {
   width: 70%;
 }
-.titles{
+
+.titles {
   font-size: 30px;
   color: white;
   text-align: center;
   margin: 0px 0px 30px 0px;
 }
- :deep(.el-form){
-  .el-input__inner{
-     border: none;
-     background-color:white;
+
+:deep(.el-form) {
+  .el-input__inner {
+    border: none;
+    background-color: white;
   }
-  .classIcon{
-     width: 1.5em;
-     height: 1.5em;
-     color: rgb(139, 135, 135);
-     margin: 0px 10px;
+
+  .classIcon {
+    width: 1.5em;
+    height: 1.5em;
+    color: rgb(139, 135, 135);
+    margin: 0px 10px;
   }
-  .xiaoyan{
+
+  .xiaoyan {
     cursor: pointer;
 
   }
-  .el-form-item{
-    .el-form-item__content{
-      div:nth-child(1){
-       white-space: nowrap;
+
+  .el-form-item {
+    .el-form-item__content {
+      div:nth-child(1) {
+        white-space: nowrap;
+      }
     }
   }
-  }
-  .el-form-item__content{
-   .inputs:focus-within {
-     border: 1px solid rgb(64, 158, 255);
+
+  .el-form-item__content {
+    .inputs:focus-within {
+      border: 1px solid rgb(64, 158, 255);
     }
   }
-   
-} 
+
+}
 
 .inputs {
   display: flex;
   align-items: center;
   border-radius: 5px;
-  background-color:white;
-   border: 1px solid rgba(253, 253, 253, 0.6);
+  background-color: white;
+  border: 1px solid rgba(253, 253, 253, 0.6);
 }

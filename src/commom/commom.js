@@ -2,12 +2,20 @@ export const TOKEN = 'token'
 export const USER_INFO = 'user_info'
 export const TIME_STAMP = 'time_stamp'
 // 定义时间2小时
-export const TIME_OUT = 2 * 60 * 60 * 1000
+export const TIME_OUT = 2 * 60 * 60 * 2000
 export const SHENSUO = 'ShenSuoKuang'
 export const LANGUAGR = 'language'
 // 主题色
 export const MYCOLOR = 'theme_color'
 export const DAOHANG = 'daohang'
+// excel批量导入字段对应关系
+export const USER_RELATION = {
+  姓名: 'username',
+  联系方式: 'mobile',
+  角色: 'role',
+  开通时间: 'openTime',
+  头像: 'avatar'
+}
 // el-color-picker 默认颜色
 export const predefineColors = [
   '#ff4500',

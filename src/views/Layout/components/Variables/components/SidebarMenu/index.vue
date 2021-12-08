@@ -81,6 +81,7 @@ const colorstyle = computed(() => {
     text-align: center;
 
     .el-menu-item {
+      text-align: left;
       .iconst {
         padding: 0px 13px 16px 0px !important;
       }

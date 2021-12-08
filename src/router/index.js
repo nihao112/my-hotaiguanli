@@ -41,7 +41,8 @@ const privateRoutes = [
         component: () => import('@/views/user-info/index'),
         meta: {
           title: 'userInfo'
-        }
+        },
+        props: true
       },
       {
         path: '/user/import',
@@ -88,6 +89,7 @@ const privateRoutes = [
       {
         path: '/article/editor/:id',
         component: () => import('@/views/article-create/index'),
+
         meta: {
           title: 'articleEditor'
         }

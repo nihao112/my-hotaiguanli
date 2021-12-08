@@ -124,7 +124,13 @@ export default {
   },
   uploadExcel: {
     upload: '点击上传',
-    drop: '将文件拖到此处'
+    drop: '将文件拖到此处',
+    upSheDing: '必须设定对应的文件',
+    upQuXiao: '取消文件读取操作',
+    upYouXiao: '必须拖拽一个有效的文件',
+    upONWxcel: '该文件不是一个wxcel！',
+    upOnJs: '该文件不是一个js类型！',
+    upShuJu: '条数据插入成功'
   },
   excel: {
     importExcel: 'excel 导入',
@@ -141,6 +147,7 @@ export default {
     defaultRole: '员工',
     remove: '删除',
     removeSuccess: '删除成功',
+    closeremove: '取消删除',
     title: '导出为 excel',
     placeholder: 'excel 文件名称',
     defaultName: '员工管理表',
@@ -149,7 +156,12 @@ export default {
     importSuccess: ' 条员工数据导入成功',
     dialogTitle1: '确定要删除用户 ',
     dialogTitle2: ' 吗？',
-    roleDialogTitle: '配置角色'
+    roleDialogTitle: '配置角色',
+    nodateFormate: '时间不能转化',
+    message: '下载成功',
+    errs: '下载失败',
+    DangQian: '当前页',
+    clears: '全部数据'
   },
   role: {
     buttonTxt: '新增角色',
@@ -167,7 +179,9 @@ export default {
   permission: {
     name: '权限名称',
     mark: '权限标识',
-    desc: '权限描述'
+    desc: '权限描述',
+    unfold: '全部展开',
+    folding: '全部折叠'
   },
   article: {
     ranking: '排名',

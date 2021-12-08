@@ -44,7 +44,7 @@ const store = useStore()
     flex: 1;
     overflow: hidden;
     .fixed-header {
-      width: calc(100% - #{$sideBarWidth}+3); // 用来动态计算宽度的
+      width: calc(100% - #{$sideBarWidth}+4); // 用来动态计算宽度的
     }
   }
 }
@@ -54,7 +54,7 @@ const store = useStore()
     width: #{$sideBarhideWidth};
   }
   .fixed-header {
-    width: calc(100% - #{$sideBarhideWidth}+3); // 用来动态计算宽度的
+    width: calc(100% - #{$sideBarhideWidth}+4); // 用来动态计算宽度的
   }
 }
 </style>

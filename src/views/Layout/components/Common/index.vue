@@ -48,7 +48,7 @@ watchLang(() => {
     <router-view v-slot="{ Component }">
       <transition name="move"
                   mode="out-in">
-        <keep-alive :include="tagsList">
+        <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </transition>
@@ -57,13 +57,14 @@ watchLang(() => {
 </template>
 <style lang="scss" scoped>
 .app-main {
-  min-height: calc(100vh - 90px);
+  // min-height: calc(100vh - 50px);
   width: 100%;
+  height: 88vh;
   position: relative;
   overflow: hidden;
   padding: 20px 20px 20px 20px;
   box-sizing: border-box;
-  overflow-y: scroll;
+  // overflow-y: scroll;
 }
 .move-enter-active,
 .move-leave-active {

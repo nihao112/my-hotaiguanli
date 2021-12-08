@@ -40,7 +40,6 @@ const backgstyle = computed(() => {
   return store.getters.cssVar.menuBg
 })
 // 字体颜色
-console.log(backgstyle.value)
 const colorhover = computed(() => {
   return store.getters.cssVar.subMenuHover
 })
@@ -87,9 +86,9 @@ watch(tabflse, (value) => {
 </script>
 
 <template>
-  <div>
+  <div style="display:flex">
     <el-tag v-for="(item,index) in daohang"
-            :key="index"
+            :key="item.path"
             :class="{'active': isActive(item.path)}"
             class="daohang"
             closable
@@ -163,7 +162,6 @@ watch(tabflse, (value) => {
     content: '●';
     padding: 0px 5px 4px 0px;
     font-size: 16px;
-    vertical-align: middle;
   }
   :deep(.el-icon) {
     display: none;

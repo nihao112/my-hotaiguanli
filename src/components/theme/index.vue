@@ -42,7 +42,7 @@ const closeDialog = () => {
 <style lang='scss' scoped>
 .themes {
   color: white;
-  font-size: 32px;
+  font-size: 28px;
   cursor: pointer;
 }
 </style>

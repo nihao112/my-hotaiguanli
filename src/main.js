@@ -17,7 +17,12 @@ import svgIconInit from './icons/index.js'
 import './permisson.js'
 // 中英切换
 import i18n from '@/i18n/index'
-
+// 注册过滤全局属性
+import initFilters from '@/filters'
+// 注册指令
+import initDirectives from '@/directives'
 const app = createApp(App)
 svgIconInit(app)
+initFilters(app)
+initDirectives(app)
 app.use(store).use(router).use(ElementPlus).use(i18n).mount('#app')

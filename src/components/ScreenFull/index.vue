@@ -26,7 +26,7 @@ const ToggleScreenFull = () => {
 <style lang='scss' scoped>
 .fullscreen {
   cursor: pointer;
-  font-size: 32px;
+  font-size: 28px;
   color: rgb(59, 60, 61);
 }
 </style>

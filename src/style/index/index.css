@@ -88,6 +88,12 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  user-select: none;
+}
+
+body {
+  border: 1px solid re;
+  overflow: hidden;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -141,7 +147,6 @@ table {
   subMenuBg: #1f2d3d;
   subMenuHover: #001528;
   sideBarWidth: 210px;
-  colors: #5468ff;
 }
 
 #app .main-container {
@@ -165,7 +170,7 @@ table {
 }
 
 #app .sidebar-container .horizontal-collapse-transition {
-  transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  transition: 0.2s width ease-in-out, 70s padding-left ease-in-out, 0s padding-right ease-in-out;
 }
 
 #app .sidebar-container .scrollbar-wrapper {
@@ -222,10 +227,6 @@ table {
   width: 54px !important;
 }
 
-#app .hideSidebar .main-container {
-  margin-left: 54px;
-}
-
 #app .hideSidebar .submenu-title-noDropdown {
   padding: 0 !important;
   position: relative;
@@ -245,10 +246,6 @@ table {
 
 #app .hideSidebar .el-submenu {
   overflow: hidden;
-}
-
-#app .hideSidebar .el-submenu > .el-submenu__title {
-  padding: 0 !important;
 }
 
 #app .hideSidebar .el-submenu > .el-submenu__title .svg-icon {
@@ -305,4 +302,5 @@ table {
 .el-menu--vertical > .el-menu--popup::-webkit-scrollbar-thumb {
   background: #99a9bf;
   border-radius: 20px;
+  border: 1px solid red;
 }

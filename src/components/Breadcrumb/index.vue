@@ -6,7 +6,6 @@ import { getTitle } from '@/utils/i18n.js'
 const route = useRoute()
 const router = useRouter()
 const breadcru = ref([])
-console.log(router)
 watch(route, () => {
   // 监听路由变化
   breadcru.value = route.matched.filter(item => {

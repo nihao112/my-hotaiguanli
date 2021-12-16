@@ -7,7 +7,7 @@ export const SHENSUO = 'ShenSuoKuang'
 export const LANGUAGR = 'language'
 // 主题色
 export const MYCOLOR = 'theme_color'
-export const DAOHANG = 'daohang'
+export const DAOHANG = 'DaoHang'
 // excel批量导入字段对应关系
 export const USER_RELATION = {
   姓名: 'username',
@@ -18,7 +18,7 @@ export const USER_RELATION = {
 }
 // el-color-picker 默认颜色
 export const predefineColors = [
-  '#ff4500',
+  '#000000',
   '#ff8c00',
   '#ffd700',
   '#90ee90',
@@ -67,3 +67,8 @@ export const colorTables = {
   menuActiveText: 'color(primary tint(80%))',
   menuBg: 'color(primary)'
 }
+// 存储权限初始化数据
+export const ROLE = 'roles'
+// 存储权限角色数据
+export const PERMISSIONS = 'permissions'
+export const PERMISSIONS_ = 'perissions_'

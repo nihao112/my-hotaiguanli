@@ -24,17 +24,36 @@ export const deleteUser = (id) => {
     method: 'get'
   })
 }
-// 获取所有数据
+//  获取所有员工列表
 export const getAllUser = () => {
   return axios.request({
     url: '/user-manage/all-list',
     method: 'get'
   })
 }
-// 用户详情
+// 获取指定员工信息
 export const userDetailById = (id) => {
   return axios.request({
     url: '/user-manage/detail/' + id,
     method: 'get'
+  })
+}
+// 获取指定员工当前角色
+export const UserManage = (userId) => {
+  // axios请求
+  return axios.request({
+    url: '/user-manage/role/' + userId,
+    method: 'get'
+  })
+}
+// 为员工分配角色
+export const updateRole = (data) => {
+  // axios请求
+  return axios.request({
+    url: `/user-manage/update-role/${data.userId}`,
+    method: 'post',
+    data: {
+      roles: data.roles
+    }
   })
 }

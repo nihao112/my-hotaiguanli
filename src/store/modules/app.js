@@ -45,10 +45,18 @@ const mutations = {
     }
     setItem(DAOHANG, state.fullpast)
   }
-
+}
+const actions = {
+  // 清理导航tog数据
+  clearFullpast ({ commit, state }) {
+    setItem(DAOHANG, [])
+    // commit('daohang', [])
+    commit('changeTitle', [])
+  }
 }
 export default {
   namespaced: true,
   state,
-  mutations
+  mutations,
+  actions
 }

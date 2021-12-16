@@ -11,7 +11,6 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
-console.log(store.getters.zheDieTuBiao)
 const zheicon = computed(() => {
   return store.getters.zheDieTuBiao ? 'hamburger-opened' : 'hamburger-closed'
 })

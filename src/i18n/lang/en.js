@@ -145,7 +145,7 @@ export default {
     action: 'Operate',
     show: 'Check',
     showRole: 'Role',
-    defaultRole: 'Staff',
+    defaultRole: 'No role',
     remove: 'delete',
     removeSuccess: 'Deleted successfully',
     closeremove: 'undelete',
@@ -160,7 +160,8 @@ export default {
     roleDialogTitle: 'Configure roles',
     nodateFormate: 'no date formate',
     message: 'download successfully',
-    errs: 'download failed'
+    errs: 'download failed',
+    load: 'loading...'
   },
   role: {
     buttonTxt: 'New Role',

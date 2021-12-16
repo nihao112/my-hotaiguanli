@@ -1,14 +1,17 @@
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import dateFilter from '@/filters/datefilters.js'
 import { watchLang } from '@/utils/i18n.js'
 import { USER_RELATION } from '@/commom/commom.js'
 import ExportExcel from '@/components/ExportExcel'
+import RoleAssignment from '@/components/RoleAssignment'
+import ThemeTable from '@/components/ThemeTable'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { getUser, deleteUser, getAllUser } from '@/api/user-manage.js'
+import { useStore } from 'vuex'
 const i18n = useI18n()
 const tableData = ref([])
 const router = useRouter()
@@ -16,6 +19,8 @@ const dialogShow = ref(false)
 const exportType = ref(1)
 const exportDate = ref([])
 const filename = ref(i18n.t('excel.defaultName'))
+const loading = ref(true)
+const store = useStore()
 // 分页
 const size = ref(5)
 const page = ref(1)
@@ -48,7 +53,6 @@ const currentChange = (currentPage) => {
 }
 // 删除
 const Updelete = (row) => {
-  console.log(row)
   ElMessageBox.confirm(
     `${i18n.t('excel.dialogTitle1')}： ${row.username} ${i18n.t('excel.dialogTitle2')}`,
     i18n.t('excel.remove'),
@@ -84,18 +88,27 @@ const getMangeUser = async () => {
     page: page.value,
     size: size.value
   })
+  setTimeout(() => {
+    loading.value = false
+  }, 800)
   tableData.value = exportDate.value = data.list
   total.value = data.total
 }
 getMangeUser()
-
+watch(() => {
+  return page.value
+}, () => {
+  setTimeout(() => {
+    loading.value = true
+  }, 100)
+})
+// 用户导出下载
 const changeExportType = async (val) => {
   if (val === 1) {
     //  下载当前页
     filename.value = `${i18n.t('excel.defaultName')}(${page.value})`
   } else {
     filename.value = i18n.t('excel.defaultName')
-
     // 如果等于2下载全部数据
     const { list } = await getAllUser()
     exportDate.value = list
@@ -104,6 +117,8 @@ const changeExportType = async (val) => {
 // 监听语言变化
 watchLang((lang) => {
   filename.value = i18n.t('excel.defaultName')
+}, () => {
+  getMangeUser()
 })
 
 // 按照需求转化数据格式
@@ -127,87 +142,108 @@ const dataFormate = (data) => {
     })
   })
 }
+// 员工分配角色事件
+const isShowDialog = ref(false)
+const rowId = ref([])
+const UpAllUser = (row) => {
+  rowId.value = row._id
+  isShowDialog.value = true
+}
+// 设置滚动条颜色
+const screenBackground = computed(() => {
+  return store.getters.cssVar['light-1']
+})
 </script>
 <template>
   <div class="user-manage">
     <el-card class="box-card box-carde">
       <!-- excel按钮 -->
       <el-button type="primary"
-                 @click="onImportExcel">{{$t("excel.importExcel")}}</el-button>
+                 @click="onImportExcel"
+                 v-showPermission="'importUser'">{{$t("excel.importExcel")}}</el-button>
       <el-button type="success"
                  @click="exportExcel">{{$t("excel.exportExcel")}}</el-button>
     </el-card>
-    <el-card class="box-card box-cards">
-      <!-- table表格 -->
-      <el-table :data="tableData"
-                border
-                style="width: 100%">
-        <el-table-column align="center"
-                         label="#"
-                         type="index">
-        </el-table-column>
-        <el-table-column align="center"
-                         prop="username"
-                         :label="i18n.t('excel.name')">
-        </el-table-column>
-        <el-table-column align="center"
-                         prop="mobile"
-                         :label="i18n.t('excel.mobile')">
-        </el-table-column>
-        <el-table-column :label="i18n.t('excel.avatar')"
-                         align="center">
-          <template v-slot="{row}">
-            <el-image :src="row.avatar"
-                      class="acatar"
-                      :preview-src-list="[row.avatar]"></el-image>
-          </template>
-        </el-table-column>
-        <el-table-column align="center"
-                         :label="i18n.t('excel.role')">
-          <template #default="{row}">
-            <div v-if="row.role && row.role.length>0">
-              <el-tag v-for="tag in row.role"
-                      :key="tag.id"
-                      size="mini">{{tag.title}}</el-tag>
-            </div>
-            <div v-else>
-              <el-tag size="mini">{{$t('excel.defaultRole')}}</el-tag>
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column align="center"
-                         prop="openTime"
-                         :label="i18n.t('excel.openTime')">
-          <template #default="{row}">
-            {{$filters.dateFilter(row.openTime)}}
-          </template>
-        </el-table-column>
-        <el-table-column align="center"
-                         width="300px"
-                         :label="i18n.t('excel.action')">
-          <template #default="{row}">
-            <el-button @click="showUserDetail(row)"
-                       type="success"
-                       size="mini">{{$t("excel.show")}}</el-button>
-            <el-button type="warning"
-                       size="mini">{{$t("excel.showRole")}}</el-button>
-            <el-button @click="Updelete(row)"
-                       type="primary"
-                       size="mini">{{$t("excel.remove")}}</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <!-- 分页 -->
-      <el-pagination class="pagination"
-                     @size-change="sizeChange"
-                     @current-change="currentChange"
-                     :currentpath="page"
-                     :page-sizes="[5,10,20,50]"
-                     :page-size="size"
-                     layout="total,sizes,prev,pager,jumper,next"
-                     :total="total">
-      </el-pagination>
-    </el-card>
+    <!-- table表格 -->
+    <theme-table :cb="[]">
+      <template #default="{ headerStyle }">
+        <el-table :header-cell-style="headerStyle"
+                  :data="tableData"
+                  border
+                  v-loading="loading"
+                  element-loading-background="rgba(0, 0, 0, 0.8)"
+                  :element-loading-text="i18n.t('excel.load')"
+                  style="width: 100%">
+          <el-table-column align="center"
+                           label="#"
+                           type="index">
+          </el-table-column>
+          <el-table-column align="center"
+                           prop="username"
+                           :label="i18n.t('excel.name')">
+          </el-table-column>
+          <el-table-column align="center"
+                           prop="mobile"
+                           :label="i18n.t('excel.mobile')">
+          </el-table-column>
+          <el-table-column :label="i18n.t('excel.avatar')"
+                           align="center">
+            <template v-slot="{row}">
+              <el-image :src="row.avatar"
+                        class="acatar"
+                        :preview-src-list="[row.avatar]"></el-image>
+            </template>
+          </el-table-column>
+          <el-table-column align="center"
+                           :label="i18n.t('excel.role')">
+            <template #default="{row}">
+              <div v-if="row.role && row.role.length>0">
+                <el-tag v-for="tag in row.role"
+                        :key="tag.id"
+                        size="mini">{{tag.title}}</el-tag>
+              </div>
+              <div v-else>
+                <el-tag size="mini">{{$t('excel.defaultRole')}}</el-tag>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column align="center"
+                           prop="openTime"
+                           :label="i18n.t('excel.openTime')">
+            <template #default="{row}">
+              {{$filters.dateFilter(row.openTime)}}
+            </template>
+          </el-table-column>
+          <el-table-column align="center"
+                           width="300px"
+                           :label="i18n.t('excel.action')">
+            <template #default="{row}">
+              <el-button @click="showUserDetail(row)"
+                         type="success"
+                         size="mini">{{$t("excel.show")}}</el-button>
+              <el-button v-showPermission="'distributeRole'"
+                         @click="UpAllUser(row)"
+                         type="warning"
+                         size="mini">{{$t("excel.showRole")}}</el-button>
+              <el-button v-showPermission="'removeUser'"
+                         @click="Updelete(row)"
+                         type="primary"
+                         size="mini">{{$t("excel.remove")}}</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <!-- 分页 -->
+        <el-pagination class="pagination"
+                       @size-change="sizeChange"
+                       @current-change="currentChange"
+                       :currentpath="page"
+                       :page-sizes="[5,10,20,50]"
+                       :page-size="size"
+                       layout="total,sizes,prev,pager,jumper,next"
+                       :total="total">
+        </el-pagination>
+      </template>
+    </theme-table>
     <!-- excel导出模态显示 -->
     <Export-excel :dialogShow="dialogShow"
                   :data="dataFormate(exportDate)"
@@ -230,20 +266,21 @@ const dataFormate = (data) => {
         </el-option>
       </el-select>
     </Export-excel>
-
+    <!-- 员工分配模态框 -->
+    <RoleAssignment v-if="isShowDialog"
+                    @close="isShowDialog=false"
+                    @update="getMangeUser"
+                    :isShowDialog="isShowDialog"
+                    :rowId="rowId" />
   </div>
 </template>
 <style lang="scss" scoped>
-.box-cards {
-  margin-top: 10px;
-}
 .box-carde {
   text-align: right;
   margin-bottom: 15px;
 }
 .pagination {
   text-align: center;
-  margin-top: 15px;
 }
 .acatar {
   width: 50px;
@@ -254,9 +291,22 @@ const dataFormate = (data) => {
   font-weight: 900;
   font-size: 18px;
 }
-:deep(.el-table--border) {
+:deep(.el-table__body-wrapper) {
   overflow: hidden;
-  height: 60vh;
+  height: 53.5vh;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 40px;
+    background: v-bind(screenBackground);
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
 </style>

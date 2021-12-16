@@ -11,6 +11,10 @@ NProgress.configure({ showSpinner: true })
 // 用户登录后 token 未过期之前，不允许进入 login 页面
 const whiteRouter = ['/login']
 router.beforeEach(async (to, from, next) => {
+  document.title = '后台管理'
+  // if (to.matched.length === 0) {
+  //   next('/404')
+  // }
   NProgress.start()
   if (store.getters.token) {
     if (to.path === '/login') {
@@ -18,10 +22,18 @@ router.beforeEach(async (to, from, next) => {
     } else {
       // 登录成功 跳转到首页
       if (!store.getters.hasUserInfo) {
-        // alert(1)
         // 判断有没有用户的信息 就去发送axios
-        await store.dispatch('user/hasUserInfo')
+        // 1.获取该用户的所有权限
+        const { permission: { menus } } = await store.dispatch('user/hasUserInfo')
+        // 2.根据权限比对私有路由 获取该用户能访问的路由
+        const filtersRouter = await store.dispatch('userPermission/filterPrivateRoutes', menus)
+        // 3.将获取过滤后的该用户的私有路由 动态添加到路由表中
+        filtersRouter.forEach(activeRoute =>
+          router.addRoute(activeRoute)
+        )
+        next(to.path)
       }
+      // 首次登录后 跳转到首页
       next()
     }
   } else {

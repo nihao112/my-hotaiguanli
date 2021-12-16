@@ -1,12 +1,15 @@
 import { logins, getUserInfo } from '@/api/user.js'
 import md5 from 'md5'
 import * as utils from '@/utils/storage.js'
-import { TOKEN, USER_INFO } from '@/commom/commom.js'
-import router from '@/router/index.js'
+import { TOKEN } from '@/commom/commom.js'
+import router, { clearPrivateRoutes } from '@/router/index.js'
 import { setTimeSteap } from '@/utils/auth.js'
+
 const state = {
   token: utils.getItem(TOKEN) || '',
-  userInfo: utils.getItem(USER_INFO) || {}
+  // userInfo: utils.getItem(USER_INFO) || {},
+  userInfo: {},
+  load: false
 }
 const getters = {}
 const mutations = {
@@ -14,11 +17,14 @@ const mutations = {
     state.token = token
     utils.setItem(TOKEN, token)
   },
-  getUserInfo(state, value) {
+  setUserInfo(state, value) {
     // 保存vuex
     state.userInfo = value
     // 保存到本地存储上
-    utils.setItem(USER_INFO, value)
+    // utils.setItem(USER_INFO, value)
+  },
+  load_ (state, load) {
+    state.load = load
   }
 }
 const actions = {
@@ -36,24 +42,34 @@ const actions = {
         })
     })
   },
-  logout({ commit }) {
-    console.log(router)
+  logout(context) {
     // 清理用户信息
-    commit('setTick', '')
+    context.commit('setTick', '')
+    // 退出后清理路由当前用户数据
+    clearPrivateRoutes().then((res) => {
     // 清理token用户返回信息
-    commit('getUserInfo', {})
+      context.commit('setUserInfo', {})
+    })
+    // 清空权限和角色相关数据
+    context.dispatch('roleAndPermission/clearRoleAndPermission', null, {
+      root: true
+    })
+    // 清理导航tog数据
+    context.dispatch('app/clearFullpast', null, {
+      root: true
+    })
+
     // 跳转到登录页面
     router.push('/login')
   },
   // 请求用户数据
-  hasUserInfo({ commit }) {
+  async hasUserInfo({ commit }) {
     // 发送ajax
-    getUserInfo().then((res) => {
-      commit('getUserInfo', res)
-    }).catch((err) => {
-      console.log(err)
-    })
+    const res = await getUserInfo()
+    commit('setUserInfo', res)
+    return res
   }
+
 }
 export default {
   namespaced: true, // 导出是全局变量 namespaced: true为了防止导出是全局变量

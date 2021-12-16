@@ -1,41 +1,39 @@
 <template>
   <div>
-    <el-card>
+    <el-card class="defaultEx">
       <el-button type="primary"
                  @click="zhankai(defaultEx?true:fasle)">{{defaultEx?$t('permission.unfold'):$t('permission.folding')}}</el-button>
     </el-card>
-    <el-card>
-      <el-table :data="permissionsData"
-                style="width: 100%; margin-bottom: 20px"
-                border
-                row-key="id"
-                :default-expand-all='fasle'
-                :tree-props="{ children: 'children' }"
-                :header-cell-style="{
-        background: store.getters.cssVar.menuBg,
-        color:store.getters.cssVar.menuActiveText,
-        fontWeight:900
-      }"
-                ref="defaultExpand">
-        <el-table-column prop="permissionName"
-                         :label="$t('permission.name')"
-                         width="200"></el-table-column>
-        <el-table-column prop="permissionMark"
-                         :label="$t('permission.mark')"
-                         width="200"></el-table-column>
-        <el-table-column prop="permissionDesc"
-                         :label="$t('permission.desc')"></el-table-column>
-      </el-table>
-    </el-card>
+    <theme-table :cb="[]">
+      <template #default="{ headerStyle }">
+        <el-table :data="permissionsData"
+                  style="width: 100%; margin-bottom: 20px"
+                  border
+                  row-key="id"
+                  :default-expand-all='fasle'
+                  :tree-props="{ children: 'children'}"
+                  :header-cell-style="headerStyle"
+                  ref="defaultExpand">
+          <el-table-column prop="permissionName"
+                           :label="$t('permission.name')"
+                           width="200"></el-table-column>
+          <el-table-column prop="permissionMark"
+                           :label="$t('permission.mark')"
+                           width="200"></el-table-column>
+          <el-table-column prop="permissionDesc"
+                           :label="$t('permission.desc')"></el-table-column>
+        </el-table>
+      </template>
+    </theme-table>
   </div>
 
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { getAllpermissions } from '@/api/permission.js'
-import { useStore } from 'vuex'
-const store = useStore()
+import { watchLang } from '@/utils/i18n.js'
+import ThemeTable from '@/components/ThemeTable'
 const permissionsData = ref([])
 const defaultExpand = ref(null)
 const defaultEx = ref(true)
@@ -44,14 +42,7 @@ const initPermission = async () => {
   permissionsData.value = data
 }
 initPermission()
-// 修改二级菜单背景
-const childrenBgColor = computed(() => {
-  return store.getters.cssVar['light-6']
-})
-// 修改hover状态下的背景
-const childrenBgColorhHover = computed(() => {
-  return store.getters.cssVar['light-3']
-})
+
 // 切换展开和合并状态
 const zhankai = (val) => {
   defaultEx.value = !defaultEx.value
@@ -59,27 +50,29 @@ const zhankai = (val) => {
     defaultExpand.value.toggleRowExpansion(item, val)
   })
 }
+// // 修改二级菜单背景
+// const childrenBgColor = computed(() => {
+//   return store.getters.cssVar['light-6']
+// })
+// // 修改hover状态下的背景
+// const childrenBgColorhHover = computed(() => {
+//   return store.getters.cssVar['light-3']
+// })
+// 数据请求中英文
+//  如果语言切换，重新调用接口
+watchLang(initPermission)
 </script>
 
 <style lang="scss" scoped>
-:deep(.el-table__row--level-1 td) {
-  background-color: v-bind(childrenBgColor);
-  cursor: pointer;
+.defaultEx {
+  text-align: right;
+  margin-bottom: 15px;
 }
+
 :deep(.el-table__body tr:hover > td) {
-  background-color: v-bind(childrenBgColorhHover) !important;
-  cursor: pointer;
   animation-name: pulse;
   animation-duration: 1.583s;
   animation-fill-mode: both;
-}
-:deep(.el-table tr) {
-  background-color: v-bind(childrenBgColor);
-  cursor: pointer;
-  color: white;
-}
-.s {
-  display: none;
 }
 
 @keyframes pulse {

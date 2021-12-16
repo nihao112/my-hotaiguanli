@@ -13,9 +13,11 @@ export default {
       ...generateColor(state.theme.myColor)
     }
   },
+  load: (state) => state.user.load,
   zheDieTuBiao: (state) => state.app.ShenSuoKuang,
   language: (state) => state.app.language,
   Theme_color: (state) => state.theme.myColor,
   daohang: (state) => state.app.fullpast,
-  currentSizes: (state) => state.app.size
+  currentSizes: (state) => state.app.size,
+  roles: (state) => state.roleAndPermission.roles
 }

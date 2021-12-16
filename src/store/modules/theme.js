@@ -3,7 +3,7 @@ import { MYCOLOR } from '@/commom/commom.js'
 export default {
   namespaced: true,
   state: {
-    myColor: getItem(MYCOLOR) || 'black'
+    myColor: getItem(MYCOLOR) || '#000000'
   },
   mutations: {
     // 设置主题色

@@ -144,7 +144,7 @@ export default {
     action: '操作',
     show: '查看',
     showRole: '角色',
-    defaultRole: '员工',
+    defaultRole: '暂无角色',
     remove: '删除',
     removeSuccess: '删除成功',
     closeremove: '取消删除',
@@ -161,7 +161,8 @@ export default {
     message: '下载成功',
     errs: '下载失败',
     DangQian: '当前页',
-    clears: '全部数据'
+    clears: '全部数据',
+    load: '加载中...'
   },
   role: {
     buttonTxt: '新增角色',

@@ -1,6 +1,6 @@
 // 登录密码输入值必须六位
 import i18n from '@/i18n/index.js'
-console.log(i18n)
+
 export const valiPassword = (rule, value, callback) => {
   if (value !== '') {
     if (value.length < 6) {

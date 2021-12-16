@@ -10,12 +10,12 @@ import Jiazai from '@/components/Jiazai'
 import { useI18n } from 'vue-i18n'
 const i18n = useI18n()
 const loginForm = ref(null)
-var time = ref(null)
+let time = ref(null)
 const passwd = ref(true)
 const boxshow = ref(false)
-const jiazai = ref(false)
-var router = useRouter()
-var store = useStore()
+const router = useRouter()
+const store = useStore()
+
 const state = reactive({
   ruleForm: {
     username: 'super-admin',
@@ -35,18 +35,13 @@ const state = reactive({
     ]
   }
 })
-
 const submitForm = async () => {
   loginForm.value.validate((valid) => {
     if (valid) {
       // 由于是局内导出所有在后面要加上("模块名us/方法名login")
       store.dispatch('user/login', state.ruleForm).then((res) => {
-        jiazai.value = true
-        setTimeout(() => {
-          ElMessage.success(i18n.t('toast.successfully'))
-          router.push('/')
-          jiazai.value = false
-        }, 2000)
+        router.push('/')
+        ElMessage.success(i18n.t('toast.successfully'))
       })
     } else {
       return false
@@ -69,7 +64,13 @@ watch(() => store.getters.language, (newValu, oldValue) => {
   loginForm.value.validateField('username')
   loginForm.value.validateField('password')
 })
-
+// 监听加载返回状态
+const load = ref()
+watch(() => {
+  return store.getters.load
+}, () => {
+  load.value = store.getters.load
+})
 </script>
 
 <template>
@@ -115,7 +116,7 @@ watch(() => store.getters.language, (newValu, oldValue) => {
             <el-button style="width: 100%"
                        type="primary"
                        @click="submitForm">
-              <Jiazai v-if="jiazai" /> {{$t("login.loginBtn")}}
+              <Jiazai v-if="load" /> {{$t("login.loginBtn")}}
             </el-button>
             <el-checkbox v-model="state.checked"
                          @change="!checked">{{$t("login.loginjizhu")}}</el-checkbox>

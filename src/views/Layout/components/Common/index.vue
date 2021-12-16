@@ -1,5 +1,5 @@
 <script setup>
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { isNoTags } from '@/utils/tag.js'
@@ -41,14 +41,18 @@ watchLang(() => {
   })
   store.commit('app/changeTitle', temArr)
 })
-
+// 设置滚动条颜色
+const screenBackground = computed(() => {
+  return store.getters.cssVar['light-1']
+})
 </script>
 <template>
   <div class="app-main">
     <router-view v-slot="{ Component }">
       <transition name="move"
                   mode="out-in">
-        <keep-alive>
+        <keep-alive include="/user/manage"
+                    exclude="/user/manage">
           <component :is="Component" />
         </keep-alive>
       </transition>
@@ -64,11 +68,24 @@ watchLang(() => {
   overflow: hidden;
   padding: 20px 20px 20px 20px;
   box-sizing: border-box;
-  // overflow-y: scroll;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 40px;
+    background: v-bind(screenBackground);
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }
 .move-enter-active,
 .move-leave-active {
-  transition: all 0.5s ease-out;
+  transition: all 0.5s;
 }
 
 .move-enter-from {

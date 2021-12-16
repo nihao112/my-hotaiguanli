@@ -15,7 +15,7 @@ var type = ref('')
 const props = defineProps({
   beforeUpload: {
     type: Function,
-    request: true
+    required: true
   },
   onSuccess: Function
 })

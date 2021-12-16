@@ -14,7 +14,7 @@ import { ElMessage } from 'element-plus'
 import { formatDate } from '@/utils/xlsx.js'
 import { useI18n } from 'vue-i18n'
 const I18n = useI18n()
-const route = useRouter()
+const router = useRouter()
 const uploadExcelSuccess = async ({ headers, bodys }) => {
   // console.log(headers, '表头')
   // console.log(bodys, '表体')
@@ -22,8 +22,7 @@ const uploadExcelSuccess = async ({ headers, bodys }) => {
   // excel表格插入
   await addUserByExcel(data)
   ElMessage.success(`${bodys.length}：${I18n.t('uploadExcel.upShuJu')}`)
-
-  route.push({ path: '/user/manage' })
+  router.push({ path: '/user/manage' })
 }
 const beforeUpload = () => {
   return { type: 'excel', doUpload: true }

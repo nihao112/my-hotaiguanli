@@ -53,7 +53,8 @@ export default {
   },
   theme: {
     themeColorChange: '主题色更换',
-    themeChange: '主题更换'
+    themeChange: '主题更换',
+    themeChangeok: '主题更换成功'
   },
   universal: {
     confirm: '确定',
@@ -104,7 +105,15 @@ export default {
     name: 'Sunday',
     job: '一个前端开发程序猿',
     Introduction:
-      '高级技术专家，曾就职于国内一线互联网公司，统筹过的多个大型项目用户数已过千万级。致力于研究大前端技术，多次受邀参加国内前端技术分享会，如：2018 年 Google 中国技术分享会。'
+      '高级技术专家，曾就职于国内一线互联网公司，统筹过的多个大型项目用户数已过千万级。致力于研究大前端技术，多次受邀参加国内前端技术分享会，如：2018 年 Google 中国技术分享会。',
+    userInfolist: '上次登录时间：',
+    userInfosite: '上次登录地点：',
+    Peking: '北京',
+    Uservolume: '用户访问量',
+    systemMessages: '系统消息',
+    quantity: '数量',
+    SuperAdmin: '超级管理员',
+    domestic: '普通用户'
   },
   userInfo: {
     print: '打印',
@@ -204,6 +213,13 @@ export default {
     commit: '提交',
     createSuccess: '文章创建成功',
     editorSuccess: '文章修改成功',
-    sortSuccess: '文章排名修改成功'
+    sortSuccess: '文章排名修改成功',
+    sortArticle: '文章不能为空'
+  },
+  errorpage: {
+    errordesc: '哦~ 你所访问的页面不存在',
+    erroetoken: '啊哦~ 你的token 已 失效',
+    large: '返回首页',
+    goBack: '返回上一页'
   }
 }

@@ -7,7 +7,7 @@ import { valiPassword, valiusername } from './rule'
 import { ElMessage } from 'element-plus'
 import SelectLang from '@/components/SelectLang'
 import Jiazai from '@/components/Jiazai'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 const i18n = useI18n()
 const loginForm = ref(null)
 let time = ref(null)
@@ -112,7 +112,7 @@ watch(() => {
             </div>
           </el-form-item>
           <el-form-item>
-            <div style="color: aliceblue">{{$t("login.logindenglu")}}&nbsp;<a href="https://work.weixin.qq.com/nl/privacy">{{$t("login.loginfuwu")}}</a></div>
+            <div style="color: aliceblue;font-size:12px;">{{$t("login.logindenglu")}}<a href="https://work.weixin.qq.com/nl/privacy">{{$t("login.loginfuwu")}}</a></div>
             <el-button style="width: 100%"
                        type="primary"
                        @click="submitForm">

@@ -20,7 +20,7 @@ export default {
       menus.forEach((name) => {
         routes_.push(...PrivateRoutes.filter((item) => item.name === name))
       })
-      // routes_.push({ path: '/:pathMatch(.*)', redirect: '/404' })
+      routes_.push({ path: '/:pathMatch(.*)*', redirect: '/404' })
       commit('setPrivateRoutes', routes_)
       return routes_
     }

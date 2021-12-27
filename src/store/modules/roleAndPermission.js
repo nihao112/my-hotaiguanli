@@ -39,7 +39,6 @@ const mutations = {
   },
   initpermissions: (state, permissions) => {
     state.permissions = permissions
-    setItem(PERMISSIONS, permissions)
     const temArr = []
     permissions.forEach(item => {
       temArr.push({ id: item.id, title: item.permissionName })
@@ -49,6 +48,7 @@ const mutations = {
         })
       }
     })
+    setItem(PERMISSIONS, permissions)
     state.permissions_ = temArr
     setItem(PERMISSIONS_, temArr)
   },

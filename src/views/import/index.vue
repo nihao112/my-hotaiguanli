@@ -12,7 +12,7 @@ import { USER_RELATION } from '@/commom/commom.js'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { formatDate } from '@/utils/xlsx.js'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 const I18n = useI18n()
 const router = useRouter()
 const uploadExcelSuccess = async ({ headers, bodys }) => {

@@ -25,10 +25,12 @@
           <el-table-column :label="$t('role.index')"
                            type="index"
                            width="200"></el-table-column>
-          <el-table-column prop="title"
+          <el-table-column :show-overflow-tooltip="true"
+                           prop="title"
                            :label="$t('role.name')"
                            width="200"></el-table-column>
-          <el-table-column prop="describe"
+          <el-table-column :show-overflow-tooltip="true"
+                           prop="describe"
                            :label="$t('role.desc')"></el-table-column>
           <el-table-column :label="$t('role.action')"
                            v-showPermission="'distributePermission'">
@@ -64,7 +66,7 @@ import EditPemissicn from './components/EditPemissicn.vue'
 import ThemeTable from '@/components/ThemeTable'
 import { getPermissionByRoleId, updatePermissionByRoleId } from '@/api/role.js'
 import { ElMessage } from 'element-plus'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 // 初始化列表
 const tableDate = ref([])
 const store = useStore()
@@ -94,13 +96,7 @@ watch(
   },
   { immediate: true }
 )
-// 语言切换
-const cbs = [
-  () => {
-    store.dispatch('roleAndPermission/clearRoleAndPermission')
-  },
-  getAllRoles
-]
+
 // 监听数据变化改变中英文切换
 watch(
   () => store.getters.roles,
@@ -114,6 +110,15 @@ watch(
 const index = (item, row) => {
   return row.permissions.findIndex((per) => item.id === per.id)
 }
+
+// 语言切换
+const cbs = [
+  () => {
+    store.dispatch('roleAndPermission/clearRoleAndPermission')
+  },
+  getAllRoles
+
+]
 const isActive = (item, row) => {
   if (index(item, row) >= 0) {
     return 'no-active'

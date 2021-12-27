@@ -1,10 +1,10 @@
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { defineProps, defineEmits, ref, watch } from 'vue'
 import { updateRole, UserManage } from '@/api/user-manage.js'
 import { getAllRole } from '@/api/role.js'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 const props = defineProps({
   // 接收dialog状态
   isShowDialog: {
@@ -27,6 +27,14 @@ const AllRoles = ref(store.state.roleAndPermission.roles)
 const AllRole = async () => {
   AllRoles.value = await getAllRole()
 }
+watch(
+  () => store.getters.roles,
+  () => {
+    AllRoles.value = store.getters.roles
+    AllRole()
+  },
+  { immediate: true }
+)
 if (Array.isArray(AllRoles.value) && AllRoles.value.length <= 0) {
   // 如果本地存储不存在角色，就从接口中获取
   AllRole()
@@ -56,7 +64,6 @@ const confirm = async () => {
   emits('close')
   ElMessage.success(i18n.t('role.updateRoleSuccess'))
 }
-
 </script>
 
 <template>
@@ -98,7 +105,7 @@ const confirm = async () => {
     margin-left: 10px;
   }
   .el-checkbox {
-    width: 100px;
+    width: 150px;
     margin: 5px 0px;
   }
 }

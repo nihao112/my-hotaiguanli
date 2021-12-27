@@ -1,5 +1,5 @@
 <script setup>
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 import { ElMessage } from 'element-plus'
 import { useStore } from 'vuex'
 const store = useStore()

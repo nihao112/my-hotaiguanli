@@ -12,9 +12,6 @@ NProgress.configure({ showSpinner: true })
 const whiteRouter = ['/login']
 router.beforeEach(async (to, from, next) => {
   document.title = '后台管理'
-  // if (to.matched.length === 0) {
-  //   next('/404')
-  // }
   NProgress.start()
   if (store.getters.token) {
     if (to.path === '/login') {

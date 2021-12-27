@@ -21,7 +21,7 @@
 import { defineProps, ref, watch } from 'vue'
 import { userDetailById } from '@/api/user-manage.js'
 import userInfo from '@/components/userInfo'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 const i18n = useI18n()
 const props = defineProps({
   id: {

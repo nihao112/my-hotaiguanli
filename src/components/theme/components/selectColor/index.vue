@@ -2,6 +2,8 @@
 import { defineProps, defineEmits, ref } from 'vue'
 import { predefineColors } from '@/commom/commom.js'
 import { useStore } from 'vuex'
+import { useI18n } from 'vue-i18n/index'
+import { ElMessage } from 'element-plus'
 import { generateNewStyle, writeStyleToHearTag } from '@/utils/theme.js'
 defineProps({
   showDialogVariable: {
@@ -17,6 +19,7 @@ const emits = defineEmits(['closeDialog'])
 const handleClose = () => {
   emits('closeDialog')
 }
+const i18n = useI18n()
 // 确定按钮
 const confirm = async () => {
   // 1.保存主题色
@@ -35,6 +38,7 @@ const confirm = async () => {
 
   // 3. 关闭dialog
   emits('closeDialog')
+  ElMessage.success(i18n.t('theme.themeChangeok'))
 }
 </script>
 

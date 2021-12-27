@@ -51,12 +51,12 @@ const screenBackground = computed(() => {
     <router-view v-slot="{ Component }">
       <transition name="move"
                   mode="out-in">
-        <keep-alive include="/user/manage"
-                    exclude="/user/manage">
+        <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </transition>
     </router-view>
+    <el-backtop target=".app-main"></el-backtop>
   </div>
 </template>
 <style lang="scss" scoped>

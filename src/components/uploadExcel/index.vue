@@ -3,7 +3,7 @@ import { ref, defineProps, computed } from 'vue'
 import { useStore } from 'vuex'
 import { isExcel, readFileAsExcel, isJs } from '@/utils/xlsx.js'
 import { ElMessage } from 'element-plus'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 const tagUploadInput = ref('')
 const store = useStore()
 const i18n = useI18n()

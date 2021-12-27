@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n/index'
 // 引入vuex
 import store from '@/store/index.js'
 // 引入中英语言包

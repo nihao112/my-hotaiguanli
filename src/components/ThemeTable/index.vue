@@ -35,6 +35,7 @@ const props = defineProps({
         return cb.every((item) => typeof item === 'function')
       } else {
         throw new Error('中英切换错误')
+        // return false
       }
     }
   }
@@ -44,6 +45,10 @@ const props = defineProps({
 //  如果语言切换，重新调用接口
 watchLang(...props.cb)
 
+// 表格拖住改变颜色
+const sortoble = computed(() => {
+  return store.getters.cssVar['light-4']
+})
 </script>
 
 <template>
@@ -70,5 +75,9 @@ watchLang(...props.cb)
   background-color: v-bind(childrenBgColor);
   cursor: pointer;
   color: white;
+}
+:deep(.ghost) {
+  background-color: v-bind(sortoble) !important;
+  color: white !important;
 }
 </style>

@@ -1,7 +1,7 @@
 
 <script setup>
-import { computed, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { ref, watch, onActivated } from 'vue'
+import { useI18n } from 'vue-i18n/index'
 import { useRouter } from 'vue-router'
 import dateFilter from '@/filters/datefilters.js'
 import { watchLang } from '@/utils/i18n.js'
@@ -19,8 +19,6 @@ const dialogShow = ref(false)
 const exportType = ref(1)
 const exportDate = ref([])
 const filename = ref(i18n.t('excel.defaultName'))
-const loading = ref(true)
-const store = useStore()
 // 分页
 const size = ref(5)
 const page = ref(1)
@@ -88,19 +86,17 @@ const getMangeUser = async () => {
     page: page.value,
     size: size.value
   })
-  setTimeout(() => {
-    loading.value = false
-  }, 800)
   tableData.value = exportDate.value = data.list
   total.value = data.total
 }
 getMangeUser()
+onActivated(getMangeUser)
+const store = useStore()
+const load = ref()
 watch(() => {
-  return page.value
+  return store.getters.load
 }, () => {
-  setTimeout(() => {
-    loading.value = true
-  }, 100)
+  load.value = store.getters.load
 })
 // 用户导出下载
 const changeExportType = async (val) => {
@@ -149,10 +145,6 @@ const UpAllUser = (row) => {
   rowId.value = row._id
   isShowDialog.value = true
 }
-// 设置滚动条颜色
-const screenBackground = computed(() => {
-  return store.getters.cssVar['light-1']
-})
 </script>
 <template>
   <div class="user-manage">
@@ -170,7 +162,7 @@ const screenBackground = computed(() => {
         <el-table :header-cell-style="headerStyle"
                   :data="tableData"
                   border
-                  v-loading="loading"
+                  v-loading="load"
                   element-loading-background="rgba(0, 0, 0, 0.8)"
                   :element-loading-text="i18n.t('excel.load')"
                   style="width: 100%">
@@ -198,7 +190,8 @@ const screenBackground = computed(() => {
                            :label="i18n.t('excel.role')">
             <template #default="{row}">
               <div v-if="row.role && row.role.length>0">
-                <el-tag v-for="tag in row.role"
+                <el-tag style="margin-left:10px"
+                        v-for="tag in row.role"
                         :key="tag.id"
                         size="mini">{{tag.title}}</el-tag>
               </div>
@@ -281,6 +274,10 @@ const screenBackground = computed(() => {
 }
 .pagination {
   text-align: center;
+  margin-top: 13px;
+}
+:deep(.el-table .el-table__cell) {
+  padding: 11px 0px;
 }
 .acatar {
   width: 50px;
@@ -291,22 +288,22 @@ const screenBackground = computed(() => {
   font-weight: 900;
   font-size: 18px;
 }
-:deep(.el-table__body-wrapper) {
-  overflow: hidden;
-  height: 53.5vh;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
+// :deep(.el-table__body-wrapper) {
+// overflow: hidden;
+// height: 52.1vh;
+// overflow-y: scroll;
+// &::-webkit-scrollbar {
+//   width: 8px;
+// }
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 40px;
-    background: v-bind(screenBackground);
-  }
+// &::-webkit-scrollbar-thumb {
+//   border-radius: 40px;
+//   background: v-bind(screenBackground);
+// }
 
-  &::-webkit-scrollbar-track {
-    border-radius: 0;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-}
+// &::-webkit-scrollbar-track {
+//   border-radius: 0;
+//   background-color: rgba(0, 0, 0, 0.1);
+// }
+// }
 </style>

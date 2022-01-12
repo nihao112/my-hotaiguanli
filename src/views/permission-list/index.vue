@@ -10,7 +10,6 @@
                   style="width: 100%; margin-bottom: 20px"
                   border
                   row-key="id"
-                  :default-expand-all='fasle'
                   :tree-props="{ children: 'children'}"
                   :header-cell-style="headerStyle"
                   ref="defaultExpand">

@@ -45,7 +45,7 @@
 import avatar from '@/assets/OIP-C.jpg'
 import { useStore } from 'vuex'
 import { ElMessageBox, ElMessage } from 'element-plus'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 import Cuttle from '@/components/Cuttle/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import SelectLang from '@/components/SelectLang/index.vue'

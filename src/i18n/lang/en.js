@@ -53,7 +53,8 @@ export default {
   },
   theme: {
     themeColorChange: 'Theme Color Change',
-    themeChange: 'Theme Change'
+    themeChange: 'Theme Change',
+    themeChangeok: 'Theme changed successfully'
   },
   universal: {
     confirm: 'confirm',
@@ -105,7 +106,15 @@ export default {
     name: 'Sunday',
     job: 'A front-end development program',
     Introduction:
-      'A senior technical expert, once worked in a domestic first-line Internet company, and has coordinated multiple large-scale projects with more than tens of millions of users. Committed to researching big front-end technology, he has been invited to participate in domestic front-end technology sharing sessions many times, such as: Google China Technology Sharing Session in 2018.'
+      'A senior technical expert, once worked in a domestic first-line Internet company, and has coordinated multiple large-scale projects with more than tens of millions of users. Committed to researching big front-end technology, he has been invited to participate in domestic front-end technology sharing sessions many times, such as: Google China Technology Sharing Session in 2018.',
+    userInfolist: 'LastLoginTime：',
+    userInfosite: 'Last Login Location  ：',
+    Peking: 'Peking',
+    Uservolume: 'User volume',
+    systemMessages: 'system messages',
+    quantity: 'quantity ',
+    SuperAdmin: 'Super Admin ',
+    domestic: 'domestic consumer'
   },
   userInfo: {
     print: 'Print',
@@ -161,6 +170,8 @@ export default {
     nodateFormate: 'no date formate',
     message: 'download successfully',
     errs: 'download failed',
+    DangQian: 'current page',
+    clears: 'all the data',
     load: 'loading...'
   },
   role: {
@@ -203,6 +214,13 @@ export default {
     commit: 'commit',
     createSuccess: 'The article was created successfully',
     editorSuccess: 'Article modified successfully',
-    sortSuccess: 'Article ranking modified successfully'
+    sortSuccess: 'Article ranking modified successfully',
+    sortArticle: 'The article cannot be empty'
+  },
+  errorpage: {
+    errordesc: 'Oh ~ the page you are visiting does not exist',
+    erroetoken: 'Oh, your token is invalid',
+    large: 'back homepage ',
+    goBack: 'Return to previous page'
   }
 }

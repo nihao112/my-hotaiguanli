@@ -4,7 +4,7 @@ export const getUser = (data) => {
   // axios请求
   return axios.request({
     url: '/user-manage/list',
-    method: 'get',
+    method: 'GET',
     params: data
   })
 }
@@ -13,7 +13,7 @@ export const addUserByExcel = (data) => {
   // axios请求
   return axios.request({
     url: '/user-manage/batch/import',
-    method: 'post',
+    method: 'POST',
     data
   })
 }
@@ -21,29 +21,29 @@ export const addUserByExcel = (data) => {
 export const deleteUser = (id) => {
   return axios.request({
     url: `/user-manage/detele/${id}`,
-    method: 'get'
+    method: 'GET'
   })
 }
 //  获取所有员工列表
 export const getAllUser = () => {
   return axios.request({
     url: '/user-manage/all-list',
-    method: 'get'
+    method: 'GET'
   })
 }
 // 获取指定员工信息
 export const userDetailById = (id) => {
   return axios.request({
-    url: '/user-manage/detail/' + id,
-    method: 'get'
+    url: `/user-manage/detail/${id}`,
+    method: 'GET'
   })
 }
 // 获取指定员工当前角色
 export const UserManage = (userId) => {
   // axios请求
   return axios.request({
-    url: '/user-manage/role/' + userId,
-    method: 'get'
+    url: `/user-manage/role/${userId}`,
+    method: 'GET'
   })
 }
 // 为员工分配角色
@@ -51,7 +51,7 @@ export const updateRole = (data) => {
   // axios请求
   return axios.request({
     url: `/user-manage/update-role/${data.userId}`,
-    method: 'post',
+    method: 'POST',
     data: {
       roles: data.roles
     }

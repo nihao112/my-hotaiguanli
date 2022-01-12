@@ -33,8 +33,9 @@ const userData = computed(() => {
           userData.mobile
         }}</el-descriptions-item>
         <el-descriptions-item :label="$t('userInfo.province')">{{
-          userData.province
-        }}</el-descriptions-item>
+          userData.address
+        }}
+        </el-descriptions-item>
         <el-descriptions-item :label="$t('userInfo.date')">{{
         $filters.dateFilter(userData.openTime)
         }}</el-descriptions-item>
@@ -91,7 +92,7 @@ const userData = computed(() => {
     }
     .avatar {
       width: 210px;
-      height: 220px;
+      height: 210px;
       box-sizing: border-box;
       padding: 20px 30px;
       border: 1px solid #ccc;

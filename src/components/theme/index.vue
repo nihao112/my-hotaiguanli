@@ -8,6 +8,7 @@ const showSelectColor = () => {
 const closeDialog = () => {
   showDialogVariable.value = false
 }
+
 </script>
 
 <template>

@@ -4,6 +4,6 @@ export const getAllpermissions = () => {
   // axios请求
   return axios.request({
     url: '/permission/list',
-    method: 'get'
+    method: 'GET'
   })
 }

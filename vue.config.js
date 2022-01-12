@@ -5,6 +5,7 @@ function getPath(src) {
   return path.join(__dirname, src)
 }
 module.exports = {
+  publicPath: './',
   chainWebpack(config) { // config是webpack默认的配置对象
     // 1.获取webpack对svg的解析的loader
     config.module

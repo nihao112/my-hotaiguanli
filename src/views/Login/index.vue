@@ -18,8 +18,8 @@ const store = useStore()
 
 const state = reactive({
   ruleForm: {
-    username: 'super-admin',
-    password: '123456'
+    username: '',
+    password: ''
   },
   checked: false,
   rules: {

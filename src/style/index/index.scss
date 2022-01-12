@@ -1,0 +1,8 @@
+// 引入原始样式
+@import '..\\body\\body.scss';
+// 定义css全局变量
+@import '..\\variables\\variables.scss';
+// 定义公共scss函数
+@import '..\\common\\common.scss';
+// 覆盖element plus默认的侧边栏样式
+@import '..\\sidebar\\sidebar.scss';
